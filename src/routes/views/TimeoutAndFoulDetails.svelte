@@ -1,6 +1,7 @@
 <script lang="ts">
 	import hotkeys from 'hotkeys-js';
 	import OtherDetailsBox from '../components/OtherDetailsBox.svelte';
+	import { Operation, TeamSide } from '$lib/enum';
 
 	let darkTimeouts: number = 5;
 	let lightTimeouts: number = 5;
@@ -8,40 +9,54 @@
 	let lightFouls: number = 0;
 	let currentPeriod: number = 1;
 
-	hotkeys('p, ctrl+t, ctrl+f, shift+t, shift+f', (event, handler) => {
-		event.preventDefault();
+	hotkeys(
+		'p, o, ctrl+t, ctrl+f, ctrl+y, ctrl+g, shift+t, shift+f, shift+y, shift+g',
+		(event, handler) => {
+			event.preventDefault();
 
-		if (handler.key === 'ctrl+t') {
-			handleTimeout('dark');
-		} else if (handler.key === 'ctrl+f') {
-			handleFouls('dark');
-		} else if (handler.key === 'shift+t') {
-			handleTimeout('light');
-		} else if (handler.key === 'shift+f') {
-			handleFouls('light');
-		} else if (handler.key === 'p') {
-			handlePeriod();
+			const actions: { [key: string]: () => void } = {
+				'ctrl+t': () => handleTimeout(TeamSide.DARK, Operation.DECREMENT),
+				'ctrl+y': () => handleTimeout(TeamSide.DARK, Operation.INCREMENT),
+				'ctrl+f': () => handleFouls(TeamSide.DARK, Operation.INCREMENT),
+				'ctrl+g': () => handleFouls(TeamSide.DARK, Operation.DECREMENT),
+				'shift+t': () => handleTimeout(TeamSide.LIGHT, Operation.DECREMENT),
+				'shift+y': () => handleTimeout(TeamSide.LIGHT, Operation.INCREMENT),
+				'shift+f': () => handleFouls(TeamSide.LIGHT, Operation.INCREMENT),
+				'shift+g': () => handleFouls(TeamSide.LIGHT, Operation.DECREMENT),
+				p: () => handlePeriod(Operation.INCREMENT),
+				o: () => handlePeriod(Operation.DECREMENT)
+			};
+
+			actions[handler.key as keyof typeof actions]?.();
 		}
-	});
+	);
 
-	function handleTimeout(side: 'dark' | 'light') {
-		if (side === 'dark' && darkTimeouts > 0) {
-			darkTimeouts--;
-		} else if (side === 'light' && lightTimeouts > 0) {
-			lightTimeouts--;
+	function handleTimeout(side: TeamSide, mode: Operation) {
+		let timeouts = side === TeamSide.DARK ? darkTimeouts : lightTimeouts;
+
+		if (mode === Operation.INCREMENT && timeouts < 5) {
+			side === TeamSide.DARK ? darkTimeouts++ : lightTimeouts++;
+		} else if (mode === Operation.DECREMENT && timeouts > 0) {
+			side === TeamSide.DARK ? darkTimeouts-- : lightTimeouts--;
 		}
 	}
 
-	function handleFouls(side: 'dark' | 'light') {
-		if (side === 'dark') {
-			darkFouls++;
-		} else if (side === 'light') {
-			lightFouls++;
+	function handleFouls(side: TeamSide, mode: Operation) {
+		let fouls = side === TeamSide.DARK ? darkFouls : lightFouls;
+
+		if (mode === Operation.INCREMENT) {
+			side === TeamSide.DARK ? darkFouls++ : lightFouls++;
+		} else if (mode === Operation.DECREMENT && fouls > 0) {
+			side === TeamSide.DARK ? darkFouls-- : lightFouls--;
 		}
 	}
 
-	function handlePeriod() {
-		currentPeriod++;
+	function handlePeriod(mode: Operation) {
+		if (mode === Operation.INCREMENT && currentPeriod < 5) {
+			currentPeriod++;
+		} else if (mode === Operation.DECREMENT && currentPeriod > 1) {
+			currentPeriod--;
+		}
 	}
 </script>
 
