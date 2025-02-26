@@ -2,6 +2,7 @@
 	import hotkeys from 'hotkeys-js';
 	import TeamScore from '../components/TeamScore.svelte';
 	import { onDestroy } from 'svelte';
+	import { playShotClockSound } from '$lib/utils';
 
 	let darkScore: number = $state(0);
 	let lightScore: number = $state(0);
@@ -10,7 +11,7 @@
 	let { shotClock = 24, isGameClockRunning = false, shotClockValue } = $props();
 
 	hotkeys(
-		'z, x, ctrl+1, ctrl+2, ctrl+3, ctrl+-, shift+1, shift+2, shift+3, shift+-',
+		'z, x, r, ctrl+1, ctrl+2, ctrl+3, ctrl+-, shift+1, shift+2, shift+3, shift+-',
 		(event, handler) => {
 			event.preventDefault();
 			if (handler.key === 'z') {
@@ -19,6 +20,8 @@
 			} else if (handler.key === 'x') {
 				shotClock = 14;
 				updateShotClockValue();
+			} else if (handler.key === 'r') {
+				resetShotClock();
 			} else if (handler.key === 'ctrl+-') {
 				if (darkScore > 0) darkScore--;
 			} else if (handler.key === 'shift+-') {
@@ -44,11 +47,13 @@
 	function startShotClock(): void {
 		if (shotClockInterval) return;
 		shotClockInterval = setInterval(() => {
-			if (shotClock > 0) {
+			if (shotClock > 1) {
 				shotClock--;
 				updateShotClockValue();
-			} else {
-				stopShotClock();
+			} else if (shotClock === 1) {
+				shotClock = 0;
+				updateShotClockValue();
+				stopShotClockWithBuzzerSound();
 			}
 		}, 1000);
 	}
@@ -58,6 +63,12 @@
 			clearInterval(shotClockInterval);
 			shotClockInterval = null;
 		}
+	}
+
+	function stopShotClockWithBuzzerSound(): void {
+		console.log('Am I played?');
+		playShotClockSound();
+		stopShotClock();
 	}
 
 	function updateShotClockValue(): void {
@@ -78,6 +89,11 @@
 
 		shotClock = newShotClock;
 
+		updateShotClockValue();
+	}
+
+	function resetShotClock() {
+		shotClock = 24;
 		updateShotClockValue();
 	}
 

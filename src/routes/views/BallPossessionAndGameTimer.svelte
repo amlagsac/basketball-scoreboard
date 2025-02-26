@@ -2,6 +2,7 @@
 	import hotkeys from 'hotkeys-js';
 	import BallPossessionArrow from '../components/BallPossessionArrow.svelte';
 	import { onDestroy } from 'svelte';
+	import { playLongBuzzerSound } from '$lib/utils';
 
 	let ballPossession: string = $state('Dark');
 	let gameMinutes: number = $state(10);
@@ -11,12 +12,14 @@
 
 	let { shotClock, isGameClockRunning } = $props();
 
-	hotkeys('b, s', (event, handler) => {
+	hotkeys('b, s, r', (event, handler) => {
 		event.preventDefault();
 		if (handler.key === 'b') {
 			changeBallPossession();
 		} else if (handler.key === 's') {
 			toggleGameTimer();
+		} else if (handler.key === 'r') {
+			resetGameTimer();
 		}
 	});
 
@@ -40,6 +43,7 @@
 		timerInterval = setInterval(() => {
 			if (gameMinutes === 0 && gameSeconds === 0) {
 				stopGameClock();
+				playLongBuzzerSound();
 				return;
 			}
 			if (gameSeconds === 0) {
@@ -94,6 +98,11 @@
 		}
 
 		gameSeconds = secs;
+	}
+
+	function resetGameTimer() {
+		gameMinutes = 10;
+		gameSeconds = 0;
 	}
 
 	$effect(() => {

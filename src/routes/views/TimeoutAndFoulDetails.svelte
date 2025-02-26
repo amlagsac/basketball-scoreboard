@@ -2,6 +2,7 @@
 	import hotkeys from 'hotkeys-js';
 	import OtherDetailsBox from '../components/OtherDetailsBox.svelte';
 	import { Operation, TeamSide } from '$lib/enum';
+	import { playLongBuzzerSound } from '$lib/utils';
 
 	let darkTimeouts: number = 5;
 	let lightTimeouts: number = 5;
@@ -37,7 +38,13 @@
 		if (mode === Operation.INCREMENT && timeouts < 5) {
 			side === TeamSide.DARK ? darkTimeouts++ : lightTimeouts++;
 		} else if (mode === Operation.DECREMENT && timeouts > 0) {
-			side === TeamSide.DARK ? darkTimeouts-- : lightTimeouts--;
+			if (side === TeamSide.DARK) {
+				darkTimeouts--;
+				playLongBuzzerSound();
+			} else {
+				lightTimeouts--;
+				playLongBuzzerSound();
+			}
 		}
 	}
 
