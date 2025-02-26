@@ -1,10 +1,20 @@
 <script lang="ts">
+	import hotkeys from 'hotkeys-js';
 	import BallPossessionAndGameTimer from './views/BallPossessionAndGameTimer.svelte';
 	import TeamScoreAndShotClock from './views/TeamScoreAndShotClock.svelte';
 	import TimeoutAndFoulDetails from './views/TimeoutAndFoulDetails.svelte';
+	import { playSubSound } from '$lib/utils';
 
 	let shotClock: number = $state(24);
 	let isGameClockRunning: boolean = $state(false);
+
+	hotkeys('u', (event, handler) => {
+		event.preventDefault();
+
+		if (handler.key === 'u') {
+			playSubSound();
+		}
+	});
 </script>
 
 <div class="min-h-screen w-full bg-[#242525]">
