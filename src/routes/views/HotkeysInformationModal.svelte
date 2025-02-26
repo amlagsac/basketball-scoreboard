@@ -59,7 +59,7 @@
 						<li><strong>Ctrl+T</strong> - Dark Team Use Timeout</li>
 						<li><strong>Ctrl+Y</strong> - Dark Team Add 1 Timeout</li>
 						<li><strong>Ctrl+F</strong> - Dark Team Add Foul by 1</li>
-						<li><strong>Ctrl+F</strong> - Dark Team Minus Foul by 1</li>
+						<li><strong>Ctrl+G</strong> - Dark Team Minus Foul by 1</li>
 					</ul>
 				{:else if activeTab === 'light'}
 					<ul class="space-y-2">
@@ -70,7 +70,7 @@
 						<li><strong>Shift+T</strong> - Light Team Use Timeout</li>
 						<li><strong>Shift+Y</strong> - Light Team Add 1 Timeout</li>
 						<li><strong>Shift+F</strong> - Light Team Add Foul by 1</li>
-						<li><strong>Shift+F</strong> - Light Team Minus Foul by 1</li>
+						<li><strong>Shift+G</strong> - Light Team Minus Foul by 1</li>
 					</ul>
 				{/if}
 			</div>
