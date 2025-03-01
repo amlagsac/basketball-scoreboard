@@ -8,7 +8,7 @@
 	let lightScore: number = $state(0);
 	let shotClockInterval: number | null = $state(null);
 
-	let { shotClock = 24, isGameClockRunning = false, shotClockValue } = $props();
+	let { shotClock = $bindable(), isGameTimerRunning = $bindable() } = $props();
 
 	hotkeys(
 		'z, x, r, ctrl+1, ctrl+2, ctrl+3, ctrl+-, shift+1, shift+2, shift+3, shift+-',
@@ -16,10 +16,8 @@
 			event.preventDefault();
 			if (handler.key === 'z') {
 				shotClock = 24;
-				updateShotClockValue();
 			} else if (handler.key === 'x') {
 				shotClock = 14;
-				updateShotClockValue();
 			} else if (handler.key === 'r') {
 				resetShotClock();
 			} else if (handler.key === 'ctrl+-') {
@@ -37,7 +35,8 @@
 	);
 
 	$effect(() => {
-		if (isGameClockRunning) {
+		console.log(isGameTimerRunning);
+		if (isGameTimerRunning) {
 			startShotClock();
 		} else {
 			stopShotClock();
@@ -49,10 +48,8 @@
 		shotClockInterval = setInterval(() => {
 			if (shotClock > 1) {
 				shotClock--;
-				updateShotClockValue();
 			} else if (shotClock === 1) {
 				shotClock = 0;
-				updateShotClockValue();
 				stopShotClockWithBuzzerSound();
 			}
 		}, 1000);
@@ -66,13 +63,8 @@
 	}
 
 	function stopShotClockWithBuzzerSound(): void {
-		console.log('Am I played?');
 		playShotClockSound();
 		stopShotClock();
-	}
-
-	function updateShotClockValue(): void {
-		return shotClockValue?.(shotClock);
 	}
 
 	function updateShotClock(event: Event): void {
@@ -88,13 +80,10 @@
 		}
 
 		shotClock = newShotClock;
-
-		updateShotClockValue();
 	}
 
 	function resetShotClock() {
 		shotClock = 24;
-		updateShotClockValue();
 	}
 
 	onDestroy(() => {

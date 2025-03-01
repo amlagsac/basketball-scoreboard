@@ -1,14 +1,14 @@
 <script lang="ts">
 	let activeTab: string = $state('general');
-	let { showModal = false, setModalValue } = $props();
+
+	let { showHotkeyInstructionsModal = $bindable() } = $props();
 
 	function closeModal() {
-		showModal = false;
-		setModalValue?.(showModal);
+		showHotkeyInstructionsModal = false;
 	}
 </script>
 
-{#if showModal}
+{#if showHotkeyInstructionsModal}
 	<div
 		class="fixed inset-0 flex items-center justify-center bg-black/75 p-4"
 		role="dialog"
@@ -44,11 +44,12 @@
 						<li><strong>B</strong> - Change Ball Possession</li>
 						<li><strong>S</strong> - Start/Stop Game Timer</li>
 						<li><strong>R</strong> - Reset Game Timer</li>
-						<li><strong>U</strong> - Play Substitution Buzzer Sound</li>
 						<li><strong>Z</strong> - Reset Shot Clock to 24</li>
 						<li><strong>X</strong> - Reset Shot Clock to 14</li>
 						<li><strong>P</strong> - Add Period/Quarter by 1</li>
 						<li><strong>O</strong> - Minus Period/Quarter by 1</li>
+						<li><strong>U</strong> - Play Substitution Buzzer Sound</li>
+						<li><strong>Space</strong> - Play Long Buzzer Sound</li>
 					</ul>
 				{:else if activeTab === 'dark'}
 					<ul class="space-y-2">

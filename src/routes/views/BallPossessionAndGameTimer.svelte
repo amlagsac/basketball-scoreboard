@@ -7,10 +7,9 @@
 	let ballPossession: string = $state('Dark');
 	let gameMinutes: number = $state(10);
 	let gameSeconds: number = $state(0);
-	let isGameTimerRunning: boolean = $state(false);
 	let timerInterval: number | null = $state(null);
 
-	let { shotClock, isGameClockRunning } = $props();
+	let { shotClock = $bindable(), isGameTimerRunning = $bindable() } = $props();
 
 	hotkeys('b, s, r', (event, handler) => {
 		event.preventDefault();
@@ -38,7 +37,6 @@
 	function startGameClock(): void {
 		if (isGameTimerRunning) return;
 		isGameTimerRunning = true;
-		isGameClockRunning?.(isGameTimerRunning);
 
 		timerInterval = setInterval(() => {
 			if (gameMinutes === 0 && gameSeconds === 0) {
@@ -61,7 +59,6 @@
 			timerInterval = null;
 		}
 		isGameTimerRunning = false;
-		isGameClockRunning?.(isGameTimerRunning);
 	}
 
 	function updateMinutes(event: Event): void {
