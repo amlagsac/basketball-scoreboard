@@ -27,19 +27,20 @@
 	}
 </script>
 
-<div class="min-h-screen w-full bg-[#242525]">
+<div class="flex h-full min-h-screen w-full flex-col items-center bg-[#242525]">
 	<button
-		class="absolute top-4 right-4 cursor-pointer"
+		class="absolute top-0 right-0 cursor-pointer rounded-full p-2 text-xs text-white transition hover:bg-gray-700 md:top-4 md:right-4 md:text-2xl"
 		aria-label="Open Information Modal"
 		onclick={openModal}
 	>
 		ℹ️
 	</button>
-	<div class="flex h-1/3 flex-1 flex-col justify-evenly gap-3">
+	<div class="flex w-full flex-1 flex-col gap-3">
 		<BallPossessionAndGameTimer bind:shotClock bind:isGameTimerRunning />
-		<hr class="h-[.15rem] bg-white" />
+		<hr class="h-[.10rem] bg-white md:h-[.15rem]" />
 		<TeamScoreAndShotClock bind:shotClock bind:isGameTimerRunning />
 		<TimeoutAndFoulDetails />
 	</div>
 </div>
+
 <HotkeysInformationModal bind:showHotkeyInstructionsModal />

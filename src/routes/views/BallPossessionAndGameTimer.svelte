@@ -113,23 +113,21 @@
 	});
 </script>
 
-<div class="flex flex-1 justify-evenly p-5">
+<div class="flex justify-around px-1 pt-8.5 pb-3 md:p-3 md:pb-0">
 	<BallPossessionArrow bind:ballPossession rightArrow={false} />
-	<div class="rounded-2xl border-4 border-white bg-black px-16 py-5">
-		<div class="h-full">
-			<span
-				contenteditable="true"
-				class="font-[Digital-7] text-[13rem] leading-none text-red-500"
-				oninput={(event: Event) => updateMinutes(event)}>{gameMinutes}</span
-			>
-			<span class="font-[Digital-7] text-[13rem] leading-none text-red-500">:</span>
-			<span
-				contenteditable="true"
-				class="font-[Digital-7] text-[13rem] leading-none text-red-500"
-				oninput={(event: Event) => updateSeconds(event)}
-				>{(gameSeconds <= 9 ? '0' : '') + gameSeconds}</span
-			>
-		</div>
+	<div class="rounded-2xl border-2 border-white bg-black px-4 py-3 md:border-4 md:py-2">
+		<span
+			contenteditable="true"
+			class="font-[Digital-7] text-5xl leading-none text-red-500 md:text-[12rem]"
+			oninput={(event: Event) => updateMinutes(event)}>{gameMinutes}</span
+		>
+		<span class="font-[Digital-7] text-5xl leading-none text-red-500 md:text-[12rem]">:</span>
+		<span
+			contenteditable="true"
+			class="font-[Digital-7] text-5xl leading-none text-red-500 md:text-[12rem]"
+			oninput={(event: Event) => updateSeconds(event)}
+			>{(gameSeconds <= 9 ? '0' : '') + gameSeconds}</span
+		>
 	</div>
 	<BallPossessionArrow bind:ballPossession rightArrow={true} />
 </div>

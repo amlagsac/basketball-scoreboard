@@ -67,13 +67,19 @@
 	}
 </script>
 
-<div class="flex h-1/3 justify-around p-10 pt-5">
+<div class="flex justify-around px-1 pt-5 md:p-1">
 	<OtherDetailsBox boxLabel={'TOL'} boxValue={darkTimeouts} />
 	<OtherDetailsBox boxLabel={'FOULS'} boxValue={darkFouls} isFoul={true} />
 	<div class="flex flex-col items-center gap-2">
-		<h3 class="text-center font-[Impact] text-4xl font-bold tracking-wider text-white">PERIOD</h3>
-		<div class="w-full rounded-sm border border-white bg-black px-5 py-1 text-center">
-			<span class="font-[Digital-7] text-[10rem] leading-none text-[#FFA500]"
+		<h3
+			class="text-md text-center font-[Impact] font-bold text-white md:text-2xl md:tracking-wider"
+		>
+			PERIOD
+		</h3>
+		<div
+			class="w-full rounded-sm border border-white bg-black px-2 py-1 text-center md:px-5 md:py-1"
+		>
+			<span class="font-[Digital-7] text-5xl leading-none text-[#FFA500] md:text-[8rem]"
 				>{currentPeriod > 4 ? 'OT' : currentPeriod}</span
 			>
 		</div>
