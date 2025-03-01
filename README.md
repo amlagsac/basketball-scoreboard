@@ -1,24 +1,22 @@
-# sv
+# Basketball Scoreboard Website 
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A Basketball Scoreboard that is accessible on the internet with hotkeys control. See the ℹ️ icon in the website to know more about the hotkey controls.
 
-## Creating a project
+## Project Prerequisite
 
-If you're seeing this, you've probably already done this step. Congrats!
+This website is built using Sveltekit a JS Framework. You need the install the minimum Node version to run this project.
 
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
+- Node v22.14.0
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've created a project and installed dependencies with `npm install`, start a development server:
 
 ```bash
+# Install dependency packages
+npm install
+
+# start the server
 npm run dev
 
 # or start the server and open the app in a new browser tab
