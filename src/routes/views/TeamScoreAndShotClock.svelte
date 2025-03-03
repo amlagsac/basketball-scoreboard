@@ -35,7 +35,6 @@
 	);
 
 	$effect(() => {
-		console.log(isGameTimerRunning);
 		if (isGameTimerRunning) {
 			startShotClock();
 		} else {

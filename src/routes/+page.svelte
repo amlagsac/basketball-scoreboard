@@ -3,21 +3,19 @@
 	import BallPossessionAndGameTimer from './views/BallPossessionAndGameTimer.svelte';
 	import TeamScoreAndShotClock from './views/TeamScoreAndShotClock.svelte';
 	import TimeoutAndFoulDetails from './views/TimeoutAndFoulDetails.svelte';
-	import { playLongBuzzerSound, playSubSound } from '$lib/utils';
+	import { playLongBuzzerSound } from '$lib/utils';
 	import HotkeysInformationModal from './views/HotkeysInformationModal.svelte';
 
 	let shotClock: number = $state(24);
 	let isGameTimerRunning: boolean = $state(false);
 	let showHotkeyInstructionsModal: boolean = $state(false);
 
-	hotkeys('u, i, space', (event, handler) => {
+	const longBuzzerSound = playLongBuzzerSound();
+
+	hotkeys('i', (event, handler) => {
 		event.preventDefault();
 
-		if (handler.key === 'u') {
-			playSubSound();
-		} else if (handler.key === 'space') {
-			playLongBuzzerSound();
-		} else if (handler.key === 'i') {
+		if (handler.key === 'i') {
 			openModal();
 		}
 	});
@@ -25,6 +23,18 @@
 	function openModal() {
 		showHotkeyInstructionsModal = true;
 	}
+
+	document.onkeydown = function (event: KeyboardEvent) {
+		if (event.key === 'h') {
+			longBuzzerSound.start();
+		}
+	};
+
+	document.onkeyup = function (event: KeyboardEvent) {
+		if (event.key === 'h') {
+			longBuzzerSound.stop();
+		}
+	};
 </script>
 
 <div class="flex h-full min-h-screen w-full flex-col items-center bg-[#242525]">

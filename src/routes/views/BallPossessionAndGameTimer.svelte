@@ -41,7 +41,8 @@
 		timerInterval = setInterval(() => {
 			if (gameMinutes === 0 && gameSeconds === 0) {
 				stopGameClock();
-				playLongBuzzerSound();
+				const longBuzzerSound = playLongBuzzerSound();
+				longBuzzerSound.start();
 				return;
 			}
 			if (gameSeconds === 0) {

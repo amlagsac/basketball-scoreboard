@@ -48,8 +48,7 @@
 						<li><strong>X</strong> - Reset Shot Clock to 14</li>
 						<li><strong>P</strong> - Add Period/Quarter by 1</li>
 						<li><strong>O</strong> - Minus Period/Quarter by 1</li>
-						<li><strong>U</strong> - Play Substitution Buzzer Sound</li>
-						<li><strong>Space</strong> - Play Long Buzzer Sound</li>
+						<li><strong>H</strong> - Play Manual Buzzer Sound</li>
 					</ul>
 				{:else if activeTab === 'dark'}
 					<ul class="space-y-2">
