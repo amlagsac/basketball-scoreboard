@@ -45,7 +45,7 @@
 	>
 		ℹ️
 	</button>
-	<div class="flex w-full flex-1 flex-col gap-3">
+	<div class="flex w-full flex-1 flex-col gap-5">
 		<BallPossessionAndGameTimer bind:shotClock bind:isGameTimerRunning />
 		<hr class="h-[.10rem] bg-white md:h-[.15rem]" />
 		<TeamScoreAndShotClock bind:shotClock bind:isGameTimerRunning />

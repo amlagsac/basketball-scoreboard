@@ -93,13 +93,13 @@
 <div class="flex justify-between px-4 pt-3 md:justify-around md:p-5">
 	<TeamScore teamName={'DARK'} teamScore={darkScore} />
 	<div class="flex flex-col items-center gap-2">
-		<h2 class="text-center font-[Impact] text-lg text-white md:text-4xl md:tracking-wider">
+		<h2 class="text-center font-[Impact] text-lg text-white md:text-5xl md:tracking-wider">
 			SHOT CLOCK
 		</h2>
 		<div class="rounded-sm border border-white bg-black px-2.5 py-2.5 text-center md:p-2.5">
 			<span
 				contenteditable="true"
-				class="font-[Digital-7] text-5xl leading-none text-[#FFA500] md:text-[12rem]"
+				class="font-[Digital-7] text-6xl leading-none text-[#FFA500] md:text-[12rem]"
 				oninput={(event: Event) => updateShotClock(event)}>{shotClock}</span
 			>
 		</div>
