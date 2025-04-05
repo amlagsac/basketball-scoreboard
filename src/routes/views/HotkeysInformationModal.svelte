@@ -46,9 +46,16 @@
 						<li><strong>R</strong> - Reset Game Timer</li>
 						<li><strong>Z</strong> - Reset Shot Clock to 24</li>
 						<li><strong>X</strong> - Reset Shot Clock to 14</li>
+						<li><strong>Q</strong> - Increase Shot Clock value by 1</li>
+						<li><strong>CTRL + Q</strong> - Decrease Shot Clock value by 1</li>
+						<li><strong>CTRL + D</strong> - Disable Shot Clock</li>
 						<li><strong>P</strong> - Add Period/Quarter by 1</li>
 						<li><strong>O</strong> - Minus Period/Quarter by 1</li>
 						<li><strong>H</strong> - Play Manual Buzzer Sound</li>
+						<li><strong>M</strong> - Increase Game Minutes value by 1</li>
+						<li><strong>CTRL + M</strong> - Decrease Game Minutes value by 1</li>
+						<li><strong>N</strong> - Increase Game Seconds value by 1</li>
+						<li><strong>CTRL + N</strong> - Decrease Game Seconds value by 1</li>
 					</ul>
 				{:else if activeTab === 'dark'}
 					<ul class="space-y-2">

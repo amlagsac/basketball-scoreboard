@@ -3,23 +3,44 @@
 	import TeamScore from '../components/TeamScore.svelte';
 	import { onDestroy } from 'svelte';
 	import { playShotClockSound } from '$lib/utils';
+	import { Operation } from '$lib/enum';
 
 	let darkScore: number = $state(0);
 	let lightScore: number = $state(0);
 	let shotClockInterval: number | null = $state(null);
+	let disableShotClock: boolean = $state(true);
 
-	let { shotClock = $bindable(), isGameTimerRunning = $bindable() } = $props();
+	let {
+		shotClock = $bindable(),
+		isGameTimerRunning = $bindable(),
+		gameMinutes = $bindable(),
+		gameSeconds = $bindable()
+	} = $props();
 
 	hotkeys(
-		'z, x, r, ctrl+1, ctrl+2, ctrl+3, ctrl+-, shift+1, shift+2, shift+3, shift+-',
+		'z, x, r, q, ctrl+q, ctrl+d, ctrl+1, ctrl+2, ctrl+3, ctrl+-, shift+1, shift+2, shift+3, shift+-',
 		(event, handler) => {
 			event.preventDefault();
 			if (handler.key === 'z') {
-				shotClock = 24;
+				if (gameMinutes < 1 && gameSeconds < 24) {
+					shotClock = '--';
+				} else {
+					shotClock = 24;
+				}
 			} else if (handler.key === 'x') {
-				shotClock = 14;
+				if (gameMinutes < 1 && gameSeconds < 14) {
+					shotClock = '--';
+				} else {
+					shotClock = 14;
+				}
 			} else if (handler.key === 'r') {
 				resetShotClock();
+			} else if (handler.key === 'q') {
+				handleIncrementOrDecrementShotClock(Operation.INCREMENT);
+			} else if (handler.key === 'ctrl+q') {
+				handleIncrementOrDecrementShotClock(Operation.DECREMENT);
+			} else if (handler.key === 'ctrl+d') {
+				handleDisableShotClock();
 			} else if (handler.key === 'ctrl+-') {
 				if (darkScore > 0) darkScore--;
 			} else if (handler.key === 'shift+-') {
@@ -43,7 +64,7 @@
 	});
 
 	function startShotClock(): void {
-		if (shotClockInterval) return;
+		if (shotClockInterval || disableShotClock) return;
 		shotClockInterval = setInterval(() => {
 			if (shotClock > 1) {
 				shotClock--;
@@ -66,23 +87,20 @@
 		stopShotClock();
 	}
 
-	function updateShotClock(event: Event): void {
-		const target = event.target as HTMLElement;
-		let text = target.innerText.trim().replace(/\D/g, '');
-
-		let newShotClock = parseInt(text, 10);
-
-		if (isNaN(newShotClock) || newShotClock < 1) {
-			newShotClock = 1;
-		} else if (newShotClock > 24) {
-			newShotClock = 24;
-		}
-
-		shotClock = newShotClock;
-	}
-
 	function resetShotClock() {
 		shotClock = 24;
+	}
+
+	function handleDisableShotClock() {
+		return (disableShotClock = !disableShotClock);
+	}
+
+	function handleIncrementOrDecrementShotClock(direction: Operation) {
+		if (direction === Operation.INCREMENT) {
+			shotClock = Math.min(shotClock + 1, 24);
+		} else if (direction === Operation.DECREMENT) {
+			shotClock = Math.max(shotClock - 1, 1);
+		}
 	}
 
 	onDestroy(() => {
@@ -96,12 +114,13 @@
 		<h2 class="text-center font-[Impact] text-lg text-white md:text-5xl md:tracking-wider">
 			SHOT CLOCK
 		</h2>
-		<div class="rounded-sm border border-white bg-black px-2.5 py-2.5 text-center md:p-2.5">
-			<span
-				contenteditable="true"
-				class="font-[Digital-7] text-6xl leading-none text-[#FFA500] md:text-[12rem]"
-				oninput={(event: Event) => updateShotClock(event)}>{shotClock}</span
+		<div
+			class="flex flex-col items-center justify-center rounded-sm border border-white bg-black px-2.5 py-2.5 text-center md:p-2.5"
+		>
+			<span class="font-[Digital-7] text-6xl leading-none text-[#FFA500] md:text-[12rem]"
+				>{shotClock}</span
 			>
+			<div class={`h-1 w-1 rounded-full ${!disableShotClock ? 'bg-[#90EE90]' : 'bg-white'}`}></div>
 		</div>
 	</div>
 	<TeamScore teamName={'LIGHT'} teamScore={lightScore} />
