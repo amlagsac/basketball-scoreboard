@@ -18,7 +18,7 @@
 	} = $props();
 
 	hotkeys(
-		'z, x, r, q, ctrl+q, ctrl+d, ctrl+1, ctrl+2, ctrl+3, ctrl+-, shift+1, shift+2, shift+3, shift+-',
+		'z, x, r, q, ctrl+q, d, ctrl+1, ctrl+2, ctrl+3, ctrl+-, shift+1, shift+2, shift+3, shift+-',
 		(event, handler) => {
 			event.preventDefault();
 			if (handler.key === 'z') {
@@ -39,7 +39,7 @@
 				handleIncrementOrDecrementShotClock(Operation.INCREMENT);
 			} else if (handler.key === 'ctrl+q') {
 				handleIncrementOrDecrementShotClock(Operation.DECREMENT);
-			} else if (handler.key === 'ctrl+d') {
+			} else if (handler.key === 'd') {
 				handleDisableShotClock();
 			} else if (handler.key === 'ctrl+-') {
 				if (darkScore > 0) darkScore--;
@@ -64,9 +64,9 @@
 	});
 
 	function startShotClock(): void {
-		if (shotClockInterval || disableShotClock) return;
+		if (shotClockInterval) return;
 		shotClockInterval = setInterval(() => {
-			if (shotClock > 1) {
+			if (shotClock > 1 && !disableShotClock) {
 				shotClock--;
 			} else if (shotClock === 1) {
 				shotClock = 0;

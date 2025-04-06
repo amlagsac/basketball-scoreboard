@@ -48,7 +48,7 @@
 						<li><strong>X</strong> - Reset Shot Clock to 14</li>
 						<li><strong>Q</strong> - Increase Shot Clock value by 1</li>
 						<li><strong>CTRL + Q</strong> - Decrease Shot Clock value by 1</li>
-						<li><strong>CTRL + D</strong> - Disable Shot Clock</li>
+						<li><strong>D</strong> - Enable/Disable Shot Clock</li>
 						<li><strong>P</strong> - Add Period/Quarter by 1</li>
 						<li><strong>O</strong> - Minus Period/Quarter by 1</li>
 						<li><strong>H</strong> - Play Manual Buzzer Sound</li>
