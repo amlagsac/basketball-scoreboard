@@ -18,7 +18,7 @@
 	} = $props();
 
 	hotkeys(
-		'z, x, r, q, cltr+q, d, shift+1, shift+2, shift+3, shift+-, alt+1, alt+2, alt+3, alt+-',
+		'z, x, r, q, ctrl+q, d, shift+1, shift+2, shift+3, shift+-, alt+1, alt+2, alt+3, alt+-',
 		(event, handler) => {
 			event.preventDefault();
 			if (handler.key === 'z') {
@@ -37,7 +37,7 @@
 				resetShotClock();
 			} else if (handler.key === 'q') {
 				handleIncrementOrDecrementShotClock(Operation.INCREMENT);
-			} else if (handler.key === 'cltr+q') {
+			} else if (handler.key === 'ctrl+q') {
 				handleIncrementOrDecrementShotClock(Operation.DECREMENT);
 			} else if (handler.key === 'd') {
 				handleDisableShotClock();
