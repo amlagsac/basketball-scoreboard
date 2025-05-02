@@ -59,25 +59,25 @@
 					</ul>
 				{:else if activeTab === 'dark'}
 					<ul class="space-y-2">
-						<li><strong>Ctrl+1</strong> - Increase Dark Team Score by 1</li>
-						<li><strong>Ctrl+2</strong> - Increase Dark Team Score by 2</li>
-						<li><strong>Ctrl+3</strong> - Increase Dark Team Score by 3</li>
-						<li><strong>Ctrl+-</strong> - Decrease Dark Team Score by 1</li>
-						<li><strong>Ctrl+T</strong> - Dark Team Use Timeout</li>
-						<li><strong>Ctrl+Y</strong> - Dark Team Add 1 Timeout</li>
-						<li><strong>Ctrl+F</strong> - Dark Team Add Foul by 1</li>
-						<li><strong>Ctrl+G</strong> - Dark Team Minus Foul by 1</li>
+						<li><strong>Shift+1</strong> - Increase Dark Team Score by 1</li>
+						<li><strong>Shift+2</strong> - Increase Dark Team Score by 2</li>
+						<li><strong>Shift+3</strong> - Increase Dark Team Score by 3</li>
+						<li><strong>Shift+-</strong> - Decrease Dark Team Score by 1</li>
+						<li><strong>Shift+T</strong> - Dark Team Use Timeout</li>
+						<li><strong>Shift+Y</strong> - Dark Team Add 1 Timeout</li>
+						<li><strong>Shift+F</strong> - Dark Team Add Foul by 1</li>
+						<li><strong>Shift+G</strong> - Dark Team Minus Foul by 1</li>
 					</ul>
 				{:else if activeTab === 'light'}
 					<ul class="space-y-2">
-						<li><strong>Shift+1</strong> - Increase Light Team Score by 1</li>
-						<li><strong>Shift+2</strong> - Increase Light Team Score by 2</li>
-						<li><strong>Shift+3</strong> - Increase Light Team Score by 3</li>
-						<li><strong>Shift+-</strong> - Decrease Light Team Score by 1</li>
-						<li><strong>Shift+T</strong> - Light Team Use Timeout</li>
-						<li><strong>Shift+Y</strong> - Light Team Add 1 Timeout</li>
-						<li><strong>Shift+F</strong> - Light Team Add Foul by 1</li>
-						<li><strong>Shift+G</strong> - Light Team Minus Foul by 1</li>
+						<li><strong>Alt+1</strong> - Increase Light Team Score by 1</li>
+						<li><strong>Alt+2</strong> - Increase Light Team Score by 2</li>
+						<li><strong>Alt+3</strong> - Increase Light Team Score by 3</li>
+						<li><strong>Alt+-</strong> - Decrease Light Team Score by 1</li>
+						<li><strong>Alt+T</strong> - Light Team Use Timeout</li>
+						<li><strong>Alt+Y</strong> - Light Team Add 1 Timeout</li>
+						<li><strong>Alt+F</strong> - Light Team Add Foul by 1</li>
+						<li><strong>Alt+G</strong> - Light Team Minus Foul by 1</li>
 					</ul>
 				{/if}
 			</div>

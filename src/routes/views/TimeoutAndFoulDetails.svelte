@@ -11,19 +11,19 @@
 	let currentPeriod: number = 1;
 
 	hotkeys(
-		'p, o, ctrl+t, ctrl+f, ctrl+y, ctrl+g, shift+t, shift+f, shift+y, shift+g',
+		'p, o, shift+t, shift+f, shift+y, shift+g, alt+t, alt+f, alt+y, alt+g',
 		(event, handler) => {
 			event.preventDefault();
 
 			const actions: { [key: string]: () => void } = {
-				'ctrl+t': () => handleTimeout(TeamSide.DARK, Operation.DECREMENT),
-				'ctrl+y': () => handleTimeout(TeamSide.DARK, Operation.INCREMENT),
-				'ctrl+f': () => handleFouls(TeamSide.DARK, Operation.INCREMENT),
-				'ctrl+g': () => handleFouls(TeamSide.DARK, Operation.DECREMENT),
-				'shift+t': () => handleTimeout(TeamSide.LIGHT, Operation.DECREMENT),
-				'shift+y': () => handleTimeout(TeamSide.LIGHT, Operation.INCREMENT),
-				'shift+f': () => handleFouls(TeamSide.LIGHT, Operation.INCREMENT),
-				'shift+g': () => handleFouls(TeamSide.LIGHT, Operation.DECREMENT),
+				'shift+t': () => handleTimeout(TeamSide.DARK, Operation.DECREMENT),
+				'shift+y': () => handleTimeout(TeamSide.DARK, Operation.INCREMENT),
+				'shift+f': () => handleFouls(TeamSide.DARK, Operation.INCREMENT),
+				'shift+g': () => handleFouls(TeamSide.DARK, Operation.DECREMENT),
+				'alt+t': () => handleTimeout(TeamSide.LIGHT, Operation.DECREMENT),
+				'alt+y': () => handleTimeout(TeamSide.LIGHT, Operation.INCREMENT),
+				'alt+f': () => handleFouls(TeamSide.LIGHT, Operation.INCREMENT),
+				'alt+g': () => handleFouls(TeamSide.LIGHT, Operation.DECREMENT),
 				p: () => handlePeriod(Operation.INCREMENT),
 				o: () => handlePeriod(Operation.DECREMENT)
 			};

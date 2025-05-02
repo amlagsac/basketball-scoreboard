@@ -18,7 +18,7 @@
 	} = $props();
 
 	hotkeys(
-		'z, x, r, q, ctrl+q, d, ctrl+1, ctrl+2, ctrl+3, ctrl+-, shift+1, shift+2, shift+3, shift+-',
+		'z, x, r, q, shift+q, d, shift+1, shift+2, shift+3, shift+-, alt+1, alt+2, alt+3, alt+-',
 		(event, handler) => {
 			event.preventDefault();
 			if (handler.key === 'z') {
@@ -37,18 +37,18 @@
 				resetShotClock();
 			} else if (handler.key === 'q') {
 				handleIncrementOrDecrementShotClock(Operation.INCREMENT);
-			} else if (handler.key === 'ctrl+q') {
+			} else if (handler.key === 'shift+q') {
 				handleIncrementOrDecrementShotClock(Operation.DECREMENT);
 			} else if (handler.key === 'd') {
 				handleDisableShotClock();
-			} else if (handler.key === 'ctrl+-') {
-				if (darkScore > 0) darkScore--;
 			} else if (handler.key === 'shift+-') {
+				if (darkScore > 0) darkScore--;
+			} else if (handler.key === 'alt+-') {
 				if (lightScore > 0) lightScore--;
-			} else if (handler.key.startsWith('ctrl+')) {
+			} else if (handler.key.startsWith('shift+')) {
 				const pointsToAddDark = parseInt(handler.key.split('+')[1]);
 				darkScore += pointsToAddDark;
-			} else if (handler.key.startsWith('shift+')) {
+			} else if (handler.key.startsWith('alt+')) {
 				const pointsToAddLight = parseInt(handler.key.split('+')[1]);
 				lightScore += pointsToAddLight;
 			}
